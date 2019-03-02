@@ -14,57 +14,84 @@
   </head>
   <body>
     <div class="container-fluid">
-        <div class="row">
-          <div class="col-7">
-              <div class="card bg-dark" style="height: 7rem;">
-                  <div class="game-instructions" id="fighter">Click on the character you wish use:</div>
-                  <div id="fighter-stage"></div> 
-                  
-                </div>
-          </div>
-          <div class="col-5"></div>
-        
-        </div>
-        <h4>Your Character</h4>
-        <div class="row b-2 b-danger">
-           
-            <div class="col-7">
-                <div class="card bg-dark" style="height: 7rem;">
-                                        
-                  </div>
+    
+      <div class="row" style="height: 13rem;">
+        <div class="col-7">
+    
+          <div class="wrapper">
+            <div class="instructions text-white" id="fighters">Click on the character you wish use:</div>
+            <div id="fighter-stage">
+    
+              <div class="player-card float-left m-1" style="width: 120px;">
+                <div class="name text-center">Old Man Luke</div>
+                <img class="img-thumbnail" src="./assets/images/players/star-wars_good_Old-Skywalker.png">
+                <div class="health text-center">165</div>
+              </div>
+    
+              <div class="player-card float-left m-1" style="width: 120px;">
+                <div class="namename text-center">Snoke</div>
+                <img class="img-thumbnail" src="./assets/images/players/star-wars_evil_Leader-Snoke.png">
+                <div class="health text-center">120</div>
+              </div>
+    
             </div>
-            <div class="col-5"></div>
-          
+    
           </div>
-          <h4>Your Enemies</h4>
-          <hr>
-          <div class="fight-section">
-              <h4>Attack!</h4>
-              <!-- <button type="button" class="btn btn-danger"><span class="spinner-grow spinner-grow-sm"></span>Attack</button> -->
-              <button type="button" class="btn btn-danger"><span id="btn-attack"></span>Attack</button>
-              <h4>Defender</h4>
+    
+        </div>
+        <div class="col-5"></div>
+    
+      </div>
+      <h4>Your Character</h4>
+      <hr>
+      <div class="row" style="height: 13rem;">
+    
+        <div class="col-7">
+          <div class="player-card float-left m-1" style="width: 120px;">
+            <div class="namename text-center">Snoke</div>
+            <img class="img-thumbnail" src="./assets/images/players/star-wars_evil_Leader-Snoke.png">
+            <div class="health text-center">120</div>
           </div>
-        <div class="row">
-          <div class="col-7">
-              <div class="card bg-danger" style="height: 7rem;">
-                  <div class="game-instructions" id="enemies">These are your enemies. Click on one to attack!</div>
-                  <div id="enemy-stage"></div>
+        </div>
+        <div class="col-5"></div>
+    
+      </div>
+      <h4>Your Enemies</h4>
+      <hr>
+      <div class="fight-section">
+        <h4>Attack!</h4>
+        <!-- <button type="button" class="btn btn-danger"><span class="spinner-grow spinner-grow-sm"></span>Attack</button> -->
+        <button type="button" class="btn btn-danger"><span id="btn-attack"></span>Attack</button>
+        <h4>Defender</h4>
+      </div>
+      <div class="row" style="height: 13rem;">
+        <div class="col-7">
+    
+          <div class="game-instructions" id="enemies">These are your enemies. Click on one to attack!</div>
+          <div id="enemy-stage">
+
+              <div class="player-card float-left m-1" style="width: 120px;">
+                  <div class="namename text-center">Snoke</div>
+                  <img class="img-thumbnail" src="./assets/images/players/star-wars_evil_Leader-Snoke.png">
+                  <div class="health text-center">120</div>
                 </div>
+
           </div>
-          <div class="col-5"></div>
-        
-        </div>     
-
-     
-
-
+    
+        </div>
+        <div class="col-5"></div>
+    
+      </div>
+    
+    
     </div>
     <!--container-->
-
-
-    <footer class="footer text-center bg-dark pt-4 pb-2 mt-5 w-100 text-white fixed-bottom"><span
+  
+  
+    <footer class="footer text-center bg-dark pt-2 pb-2 mt-5 w-100 text-danger"><span
         title="Star Wars RPG">Star Wars RPG</span></footer>
   </body>
+  <!-- <script type="text/javascript" src="assets/js/game.js"></script> -->
   <script type="text/javascript" src="assets/js/game.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
