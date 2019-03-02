@@ -1,0 +1,14 @@
+body{
+    background-image: url("../images/star-wars-darth-bg.png");
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-attachment: fixed;
+    background-color: black;
+    /* background-size:  cover; */
+}
+
+.bg-pirate {
+    background-image: url("../images/map.jpg");
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire 
+}
