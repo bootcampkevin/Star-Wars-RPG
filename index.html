@@ -14,87 +14,83 @@
   </head>
   <body>
     <div class="container-fluid">
-    
+  
       <div class="row" style="height: 13rem;">
-        <div class="col-7">
-    
+        <div class="col-10">
+  
           <div class="wrapper">
-            <div class="instructions text-white" id="fighters">Click on the character you wish use:</div>
-            <div id="fighter-stage">
-    
-              <div class="player-card float-left m-1" style="width: 120px;">
-                <div class="name text-center">Old Man Luke</div>
-                <img class="img-thumbnail" src="./assets/images/players/star-wars_good_Old-Skywalker.png">
-                <div class="health text-center">165</div>
-              </div>
-    
-              <div class="player-card float-left m-1" style="width: 120px;">
-                <div class="namename text-center">Snoke</div>
-                <img class="img-thumbnail" src="./assets/images/players/star-wars_evil_Leader-Snoke.png">
-                <div class="health text-center">120</div>
-              </div>
-    
-            </div>
-    
+            <div class="instructions text-white" id="fighters-text">Click on the character you wish use:</div>
+            <div id="fighter-stage"><!--js fills fighters--></div>  
           </div>
-    
+  
         </div>
-        <div class="col-5"></div>
-    
+        <div class="col-2"></div>
+  
       </div>
-      <h4>Your Character</h4>
-      <hr>
+      
+      
       <div class="row" style="height: 13rem;">
-    
-        <div class="col-7">
-          <div class="player-card float-left m-1" style="width: 120px;">
-            <div class="namename text-center">Snoke</div>
-            <img class="img-thumbnail" src="./assets/images/players/star-wars_evil_Leader-Snoke.png">
-            <div class="health text-center">120</div>
+      
+        <div class="col-10">
+          <div class="wrapper">
+            <div class="instructions text-white" id="your-character"><h4>Your Character</h4></div>
+            <div id="character-stage"><!--js fills with your character--></div>  
           </div>
         </div>
-        <div class="col-5"></div>
-    
+      
+        <div class="col-2"></div>
       </div>
-      <h4>Your Enemies</h4>
-      <hr>
-      <div class="fight-section">
-        <h4>Attack!</h4>
-        <!-- <button type="button" class="btn btn-danger"><span class="spinner-grow spinner-grow-sm"></span>Attack</button> -->
-        <button type="button" class="btn btn-danger"><span id="btn-attack"></span>Attack</button>
-        <h4>Defender</h4>
+      <div class="row" style="height: 15rem;">
+      
+        <div class="col-10">
+          <div class="wrapper">
+            <div class="instructions text-white" id="your-enemies"><h4>Your Enemies</h4></div>
+            <div id="enemy-stage"><!--js fills with your enemy to fight--></div>
+            
+          </div>
+        </div>
+      
+        <div class="col-2"></div>
       </div>
-      <div class="row" style="height: 13rem;">
-        <div class="col-7">
-    
-          <div class="game-instructions" id="enemies">These are your enemies. Click on one to attack!</div>
-          <div id="enemy-stage">
 
-              <div class="player-card float-left m-1" style="width: 120px;">
-                  <div class="namename text-center">Snoke</div>
-                  <img class="img-thumbnail" src="./assets/images/players/star-wars_evil_Leader-Snoke.png">
-                  <div class="health text-center">120</div>
-                </div>
+       
+        <div class="row" style="height: 13rem;">
+      
+          <div class="col-10">
+
+              <div class="wrapper">
+                  <div id="attack-div" class="d-none">
+                      <div class="instructions text-white" id="attack-enemies"><h4>Attack!</h4></div>
+                      <div id="attack-stage"><button type="button" class="btn btn-danger" id="btn-attack">Attack</button>
+                      </div>  
+                    </div>
+              </div>  
 
           </div>
-    
+        
+          <div class="col-2">
+            
+          </div>
         </div>
-        <div class="col-5"></div>
-    
+        
+        
+
       </div>
-    
-    
+      <!--container-->
+  
+  
+      <footer class="footer text-center bg-dark pt-2 pb-2 mt-5 w-100 text-danger fixed-bottom"><span
+          title="Star Wars RPG">Star Wars RPG</span></footer>
     </div>
-    <!--container-->
-  
-  
-    <footer class="footer text-center bg-dark pt-2 pb-2 mt-5 w-100 text-danger"><span
-        title="Star Wars RPG">Star Wars RPG</span></footer>
   </body>
   <!-- <script type="text/javascript" src="assets/js/game.js"></script> -->
-  <script type="text/javascript" src="assets/js/game.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <!-- <script type="text/javascript" src="./assets/js/game.js"></script> -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="./assets/js/game.js"></script>
+  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+  <!-- <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script> -->
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
 </html>
