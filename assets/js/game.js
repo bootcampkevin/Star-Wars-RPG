@@ -26,7 +26,7 @@ class Fighter {
     this.characterDiv = '<button class="player-card float-left m-1" id="' + this.name[1] + '" data-fighter-nature="' + this.nature + '" style="width: 120px;">' +
       '<div class="name text-center">' + this.name[0] + '</div>' +
       '<img class="img-thumbnail" src="./assets/images/players/star-wars_' + this.nature + '_' + this.name[1] + '.png">' +
-      '<div class="health text-center">' + this.healthPoints + '</div>' + '</button>'
+      '<div class="health text-center" id="health-' + this.name[1] + '">' + this.healthPoints + '</div>' + '</button>'
 
   }
 
@@ -34,17 +34,31 @@ class Fighter {
     console.log(`Fighter: I'm ${this.name[0]}`);
   };
 
+  attack(eO){
+    
+    eO.healthPoints -= this.attackPower;
+    
+    console.log('MY OLD AttackPower: '+ this.attackPower);
+    this.attackPower = Math.floor(this.attackPower * 1.25);
+    console.log('MY NEW AttackPower: '+ this.attackPower);
+
+  }
+  counterAttacked(eO){    
+    this.healthPoints -= eO.counterAttackPower;   
+    console.log('My health after counter: '+ this.healthPoints); 
+  }
+
 }
 
 //constructor([name, tag], hp, ap, cap, nature)
-let kylo = new Fighter(['Kylo Ren', 'kylo'], 100, 20, 30, 'evil');
-let maul = new Fighter(['Darth Maul', 'maul'], 110, 20, 30, 'evil');
-// let palpatine = new Fighter(['Sheev Palpatine','palpatine'], 10, 20, 30, 'evil');
-let snoke = new Fighter(['Snoke', 'snoke'], 120, 20, 30, 'evil');
-let finn = new Fighter(['Finn', 'finn'], 130, 20, 30, 'good');
-let rey = new Fighter(['Rey', 'rey'], 140, 20, 30, 'good');
-let skywalker = new Fighter(['Skywalker', 'skywalker'], 150, 20, 30, 'good');
-// let yoda = new Fighter(['Yoda','yoda'], 10, 20, 30, 'good');
+let kylo = new Fighter(['Kylo Ren', 'kylo'], 100, 20, 15, 'evil');
+let maul = new Fighter(['Darth Maul', 'maul'], 110, 20, 15, 'evil');
+// let palpatine = new Fighter(['Sheev Palpatine','palpatine'], 10, 20, 15, 'evil');
+let snoke = new Fighter(['Snoke', 'snoke'], 120, 20, 15, 'evil');
+let finn = new Fighter(['Finn', 'finn'], 130, 20, 15, 'good');
+let rey = new Fighter(['Rey', 'rey'], 140, 20, 15, 'good');
+let skywalker = new Fighter(['Skywalker', 'skywalker'], 150, 20, 15, 'good');
+// let yoda = new Fighter(['Yoda','yoda'], 10, 20, 15, 'good');
 
 // const fighters =[kylo, maul, palpatine, snoke, finn, rey, skywalker, yoda];
 const fighters = [kylo, maul, snoke, finn, rey, skywalker];
@@ -55,7 +69,29 @@ function fighterLookup(id) {
   return fighters.find( rebel => rebel.name[1] === id );
 }
 
+//fights and updates the DOM
+//TODO figure out how to check for wins.
+function playerBattle(fObj, eObj) {
+  
+  
+  fObj.attack(eObj);
+  $("#fighter-header").text('Your Attack: ' + fObj.attackPower);
+  $("#fighter-dialog").text('You Attacked ' + eObj.name[0] + '!');
 
+  $("#health-" + eObj.name[1]).text(eObj.healthPoints);
+  console.log("#health-" + eObj.name[1] + '  ' + eObj.healthPoints);
+  
+ 
+  if (eObj.healthPoints > 0) {
+    $("#enemy-header").text('Enemy Attack: ' +  eObj.counterAttackPower);
+    $("#enemy-dialog").text(eObj.name[0] + ' Counter Attacked you for ' + eObj.counterAttackPower + '!');
+    fObj.counterAttacked(eObj);
+    
+    $("#health-" + fObj.name[1]).text(fObj.healthPoints);
+    console.log("#health-" + fObj.name[1] + '  ' + fObj.healthPoints);
+  }
+
+}
 
 
 //FUNCTION Calls
@@ -159,6 +195,8 @@ $(".player-card").on("click", function () {
       // $('#attack-btn').css("d-block");
       $('#attack-div').removeClass('d-none');
       $('#attack-div').addClass('d-block');
+      $('#dialog-box').removeClass('d-none');
+      $('#dialog-box').addClass('d-block');
 
       //TODO turn opacity down on background fighters, look into muted?  
       var backgroundFighters = $('#character-stage');
@@ -176,9 +214,7 @@ $(".player-card").on("click", function () {
 });
 
 $('#btn-attack').on("click", function () {
-  console.log(fighterObj);
-  console.log(enemyObj);
-  
+  //TODO add function to check for wins?´ 
   playerBattle(fighterObj,enemyObj);
   
 });
