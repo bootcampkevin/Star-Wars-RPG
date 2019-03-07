@@ -34,18 +34,18 @@ class Fighter {
     console.log(`Fighter: I'm ${this.name[0]}`);
   };
 
-  attack(eO){
-    
+  attack(eO) {
+
     eO.healthPoints -= this.attackPower;
-    
-    console.log('MY OLD AttackPower: '+ this.attackPower);
+
+    console.log('MY OLD AttackPower: ' + this.attackPower);
     this.attackPower = Math.floor(this.attackPower * 1.25);
-    console.log('MY NEW AttackPower: '+ this.attackPower);
+    console.log('MY NEW AttackPower: ' + this.attackPower);
 
   }
-  counterAttacked(eO){    
-    this.healthPoints -= eO.counterAttackPower;   
-    console.log('My health after counter: '+ this.healthPoints); 
+  counterAttacked(eO) {
+    this.healthPoints -= eO.counterAttackPower;
+    console.log('My health after counter: ' + this.healthPoints);
   }
 
 }
@@ -66,27 +66,27 @@ const fighters = [kylo, maul, snoke, finn, rey, skywalker];
 
 
 function fighterLookup(id) {
-  return fighters.find( rebel => rebel.name[1] === id );
+  return fighters.find(rebel => rebel.name[1] === id);
 }
 
 //fights and updates the DOM
 //TODO figure out how to check for wins.
 function playerBattle(fObj, eObj) {
-  
-  
+
+
   fObj.attack(eObj);
   $("#fighter-header").text('Your Attack: ' + fObj.attackPower);
   $("#fighter-dialog").text('You Attacked ' + eObj.name[0] + '!');
 
   $("#health-" + eObj.name[1]).text(eObj.healthPoints);
   console.log("#health-" + eObj.name[1] + '  ' + eObj.healthPoints);
-  
- 
+
+
   if (eObj.healthPoints > 0) {
-    $("#enemy-header").text('Enemy Attack: ' +  eObj.counterAttackPower);
+    $("#enemy-header").text('Enemy Attack: ' + eObj.counterAttackPower);
     $("#enemy-dialog").text(eObj.name[0] + ' Counter Attacked you for ' + eObj.counterAttackPower + '!');
     fObj.counterAttacked(eObj);
-    
+
     $("#health-" + fObj.name[1]).text(fObj.healthPoints);
     console.log("#health-" + fObj.name[1] + '  ' + fObj.healthPoints);
   }
@@ -173,50 +173,50 @@ $(".player-card").on("click", function () {
   }//if fighter not picked yet.
 
   else {//Choose you enemy fighter
+    if (!isEnemyPicked) {
+      enemyID = $(this).attr('id');
+      enemyObj = fighterLookup(enemyID);
+      if ((isEnemyPicked == false) && (enemyID != fighterID)) { //choose your enemy -- do this more than once a game  
+        isEnemyPicked = true;//set to true flag switched to stop choosing players on clicks.
+        // console.log('enemyID: ' + enemyID);
+        // console.log('fighterID: ' + fighterID);
 
-    enemyID = $(this).attr('id');
-    enemyObj = fighterLookup(enemyID);
-    if ((isEnemyPicked == false) && (enemyID != fighterID)) { //choose your enemy -- do this more than once a game  
-      isEnemyPicked = true;//set to true flag switched to stop choosing players on clicks.
-      // console.log('enemyID: ' + enemyID);
-      // console.log('fighterID: ' + fighterID);
-
-      // TODO change this to use objects, not strings. 
-      var sendFighter;
-      for (let i in fighters) {
-        if (enemyID == fighters[i].name[1]) {
-          sendFighter = '#' + fighters[i].name[1];
+        // TODO change this to use objects, not strings. 
+        var sendFighter;
+        for (let i in fighters) {
+          if (enemyID == fighters[i].name[1]) {
+            sendFighter = '#' + fighters[i].name[1];
+          }
+          //TODO find a way tot do tranversal and not use a for loop to match name.
         }
-        //TODO find a way tot do tranversal and not use a for loop to match name.
+        // console.log("send fighter  :" + sendFighter);
+
+        $(sendFighter).appendTo('#enemy-stage');
+        // $('#attack-btn').css("d-block");
+        $('#attack-div').removeClass('d-none');
+        $('#attack-div').addClass('d-block');
+        $('#dialog-box').removeClass('d-none');
+        $('#dialog-box').addClass('d-block');
+
+        //TODO turn opacity down on background fighters, look into muted?  
+        var backgroundFighters = $('#character-stage');
+        backgroundFighters.animate({
+          opacity: "0.6",
+        }, "slow");
+
+
       }
-      // console.log("send fighter  :" + sendFighter);
 
-      $(sendFighter).appendTo('#enemy-stage');
-      // $('#attack-btn').css("d-block");
-      $('#attack-div').removeClass('d-none');
-      $('#attack-div').addClass('d-block');
-      $('#dialog-box').removeClass('d-none');
-      $('#dialog-box').addClass('d-block');
-
-      //TODO turn opacity down on background fighters, look into muted?  
-      var backgroundFighters = $('#character-stage');
-      backgroundFighters.animate({
-        opacity: "0.6",
-      }, "slow");
 
 
     }
-
-
-
   }
-
 });
 
 $('#btn-attack').on("click", function () {
   //TODO add function to check for wins?´ 
-  playerBattle(fighterObj,enemyObj);
-  
+  playerBattle(fighterObj, enemyObj);
+
 });
 
 
