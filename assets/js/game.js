@@ -45,14 +45,14 @@ $(document).ready(function () {
 
       eO.healthPoints -= this.attackPower;
 
-      console.log('MY OLD AttackPower: ' + this.attackPower);
+      // console.log('MY OLD AttackPower: ' + this.attackPower);
       this.attackPower = Math.floor(this.attackPower * 1.25);
-      console.log('MY NEW AttackPower: ' + this.attackPower);
+      // console.log('MY NEW AttackPower: ' + this.attackPower);
 
     }
     counterAttacked(eO) {
       this.healthPoints -= eO.counterAttackPower;
-      console.log('My health after counter: ' + this.healthPoints);
+      // console.log('My health after counter: ' + this.healthPoints);
     }
 
   }//class Fighter
@@ -81,20 +81,28 @@ $(document).ready(function () {
 
 
     fObj.attack(eObj);
-    $("#fighter-header").text('Your Attack: ' + fObj.attackPower);
-    $("#fighter-dialog").text('You Attacked ' + eObj.name[0] + '!');
-
+    $("#fighter-header").text('You attacked ' + eObj.name[0] + ' for ' + fObj.attackPower + ' damage!');
+    $("#fighter-dialog").text('Your Health:');
+    //update enemy health on the DOM
+    var eHP = ((eObj.healthPoints / eObj.maxHP)*100).toFixed(0);   
+    $("#enemy-health").css({width: +eHP+'%'});
     $("#health-" + eObj.name[1]).text(eObj.healthPoints);
     // console.log("#health-" + eObj.name[1] + '  ' + eObj.healthPoints);
 
     if (eObj.healthPoints > 0) {
-      $("#enemy-header").text('Enemy Attack: ' + eObj.counterAttackPower);
-      $("#enemy-dialog").text(eObj.name[0] + ' Counter Attacked you for ' + eObj.counterAttackPower + '!');
+      
       fObj.counterAttacked(eObj);
+      $("#enemy-header").text(eObj.name[0] + ' counter attacked you for ' + eObj.counterAttackPower + ' damage!');
+      $("#enemy-dialog").text('Enemy Health:');
+      
       //after counter attack, check if I have been defeated. 
       if (fObj.healthPoints <= 0) {
         selfDefeat();
       }
+      //update fighter's hp on the DOM
+      var fHP = ((fObj.healthPoints / fObj.maxHP)*100).toFixed(0);
+      
+      $("#fighter-health").css({width: +fHP+'%'});  
       $("#health-" + fObj.name[1]).text(fObj.healthPoints);
       // console.log("#health-" + fObj.name[1] + '  ' + fObj.healthPoints);
     }
@@ -150,7 +158,7 @@ $(document).ready(function () {
 
   $('#play-again').on('click', function () {
     resetGame();
-    console.log('play again');
+    // console.log('play again');
   });
 
   var charDiv;
@@ -245,8 +253,7 @@ $(document).ready(function () {
   });//YOUR FIGHTER HAS BEEN CHOSEN; CODE WILL NOT BE USED AGAIN.
 
   $('#btn-attack').on("click", function () {
-    //TODO add function to check for wins?´ 
-    console.log('button: ' + $(this).parent().children());
+    //TODO add function to check for wins?´    
     playerBattle(fighterObj, enemyObj);
     // }
     //Show the fight dialog box;
@@ -267,6 +274,9 @@ $(document).ready(function () {
     //Show the Attack Button now.
     $('#attack-div').removeClass('d-none');
     $('#attack-div').addClass('d-block');
+
+    //update enemy health to be 100% on the DOM for new picks    
+    $("#enemy-health").css({width: '100%'});    
 
     $('#warriors-stage').animate({
       opacity: "0.4",
