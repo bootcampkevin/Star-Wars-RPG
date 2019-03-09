@@ -19,76 +19,94 @@
         <div class="col-10">
   
           <div class="wrapper">
-            <div class="instructions text-white"><h4 id="fighters-text">Click on the character you wish use:</h4></div>
-            <div id="fighter-stage"><!--js fills fighters--></div><div class="text-white d-none" id="game-info"><div class="card text-white bg-primary mb-0">
-              <div class="card-header" id="game-card-header"></div>
-              <div class="card-body">                
-                <p class="card-text"id="game-card-body"></p>
+            <div class="instructions text-white">
+              <h4 id="fighters-text">Click on the character you wish use:</h4>
+            </div>
+            <div id="fighter-stage">
+              <!--js fills fighters-->
+            </div>
+            <div class="text-white d-none" id="game-info">
+              <div class="card text-white bg-primary mb-0">
+                <div class="card-header" id="game-card-header"></div>
+                <div class="card-body">
+                  <p class="card-text" id="game-card-body"></p>
+                </div>
               </div>
-            </div></div>
+            </div>
           </div>
   
-        </div>        
+        </div>
         <div class="col-1"></div>
   
       </div>
-      
-      
+  
+  
       <div class="row" style="height: 13rem;">
-      
+  
         <div class="col-8">
           <div class="wrapper">
-            <div class="instructions text-white" id="your-character"><h4>Your Enemies</h4></div>
-            <div id="warriors-stage"><!--js fills with your character--></div>  
+            <div class="instructions text-white" id="your-character">
+              <h4>Your Enemies</h4>
+            </div>
+            <div id="warriors-stage">
+              <!--js fills with your character-->
+            </div><div id="play-again" class="d-none"><button type="button" class="btn btn-primary" id="btn-play-again">Play Again!</button>
+            </div>  
           </div>
         </div>
-      
+  
         <div class="col-4"></div>
       </div>
-
+  
       <div class="row" style="height: 15rem;">
-      
+  
         <div class="col-4">
           <div class="wrapper">
-            <div class="instructions text-white" id="your-fight"><h4>Pick your opponents wisely...</h4></div>
-            <div id="enemy-stage"><!--js fills with your enemy to fight--></div>
-            
+            <div class="instructions text-white" id="your-fight">
+              <h4>Pick your opponents wisely...</h4>
+            </div>
+            <div id="enemy-stage">
+              <!--js fills with your enemy to fight-->
+            </div>
+  
           </div>
         </div>
         <div class="col-2">
-
-            <div class="wrapper">
-                <div id="attack-div" class="d-none">
-                    <div class="instructions text-white" id="attack-enemies"><h4>Attack!</h4></div>
-                    <div id="attack-stage"><button type="button" class="btn btn-danger" id="btn-attack">Attack</button>
-                    </div>  
-                  </div>
-            </div>  
-
+  
+          <div class="wrapper">
+            <div id="attack-div" class="d-none">
+              <div class="instructions text-white" id="attack-enemies">
+                <h4>Attack!</h4>
+              </div>
+              <div id="attack-stage"><button type="button" class="btn btn-danger" id="btn-attack">Attack</button>
+              </div>
+            </div>
+          </div>
+  
         </div>
         <div class="col-6">
           <div id="dialog-box" class="d-none">
             <div class="card text-white bg-success mb-3">
               <div class="card-header" id="fighter-header"></div>
-              <div class="card-body">                
+              <div class="card-body">
                 <p class="card-text" id="fighter-dialog"></p>
               </div>
             </div>
             <div class="card text-white bg-danger mb-3">
               <div class="card-header" id="enemy-header"></div>
-              <div class="card-body">                
+              <div class="card-body">
                 <p class="card-text" id="enemy-dialog"></p>
               </div>
             </div>
           </div>
-        </div>       
-
+        </div>
+  
       </div>
       <!--container-->
   
   
       <!-- <footer class="footer text-center bg-dark pt-2 pb-2 mt-5 w-100 text-danger fixed-bottom"><span
-          title="Star Wars RPG">Star Wars RPG</span></footer> -->
+            title="Star Wars RPG">Star Wars RPG</span></footer> -->
     </div>
   </body>
   <!-- <script type="text/javascript" src="assets/js/game.js"></script> -->

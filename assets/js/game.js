@@ -22,6 +22,8 @@ $(document).ready(function () {
       this.attackPower = ap;
       this.counterAttackPower = cap;
       this.nature = nature;
+      this.maxHP = hp;
+      this.origAP = ap;
 
       // this.characterDiv = '<button class="player-card float-left m-1" data-fighter-nature="'+this.name[1]+'" style="width: 120px;">'+
       this.characterDiv = '<button class="player-card options float-left m-1 ' + this.nature + '" id="' + this.name[1] + '" data-fighter-nature="' + this.nature + '" style="width: 120px;">' +
@@ -30,7 +32,11 @@ $(document).ready(function () {
         '<div class="health text-center" id="health-' + this.name[1] + '">' + this.healthPoints + '</div>' + '</button>'
 
     }
+    reset() {
+      this.healthPoints = this.maxHP;
+      this.attackPower = this.origAP;
 
+    };
     greeting() {
       console.log(`Fighter: I'm ${this.name[0]}`);
     };
@@ -49,10 +55,10 @@ $(document).ready(function () {
       console.log('My health after counter: ' + this.healthPoints);
     }
 
-  }
+  }//class Fighter
 
   //constructor([name, tag], hp, ap, cap, nature)
-  let kylo = new Fighter(['Kylo Ren', 'kylo'], 100, 20, 15, 'evil');
+  let kylo = new Fighter(['Kylo Ren', 'kylo'], 100, 25, 15, 'evil');
   let maul = new Fighter(['Darth Maul', 'maul'], 110, 20, 15, 'evil');
   // let palpatine = new Fighter(['Sheev Palpatine','palpatine'], 10, 20, 15, 'evil');
   let snoke = new Fighter(['Snoke', 'snoke'], 120, 20, 55, 'evil');
@@ -60,7 +66,8 @@ $(document).ready(function () {
   let rey = new Fighter(['Rey', 'rey'], 140, 20, 15, 'good');
   let skywalker = new Fighter(['Skywalker', 'skywalker'], 150, 20, 15, 'good');
   // let yoda = new Fighter(['Yoda','yoda'], 10, 20, 15, 'good');
-
+  var wins = 0;
+  var losses = 0;
   // const fighters =[kylo, maul, palpatine, snoke, finn, rey, skywalker, yoda];
   const fighters = [kylo, maul, snoke, finn, rey, skywalker];
 
@@ -69,7 +76,7 @@ $(document).ready(function () {
     return fighters.find(rebel => rebel.name[1] === id);
   }
   //fights and updates the DOM
-  //TODO figure out how to check for wins.
+  //TODO figure out how to keep track of wins/stats
   function playerBattle(fObj, eObj) {
 
 
@@ -78,20 +85,22 @@ $(document).ready(function () {
     $("#fighter-dialog").text('You Attacked ' + eObj.name[0] + '!');
 
     $("#health-" + eObj.name[1]).text(eObj.healthPoints);
-    console.log("#health-" + eObj.name[1] + '  ' + eObj.healthPoints);
+    // console.log("#health-" + eObj.name[1] + '  ' + eObj.healthPoints);
 
-//TODO!!!!!! Check for MY defeat.
     if (eObj.healthPoints > 0) {
       $("#enemy-header").text('Enemy Attack: ' + eObj.counterAttackPower);
       $("#enemy-dialog").text(eObj.name[0] + ' Counter Attacked you for ' + eObj.counterAttackPower + '!');
       fObj.counterAttacked(eObj);
-
+      //after counter attack, check if I have been defeated. 
+      if (fObj.healthPoints <= 0) {
+        selfDefeat();
+      }
       $("#health-" + fObj.name[1]).text(fObj.healthPoints);
-      console.log("#health-" + fObj.name[1] + '  ' + fObj.healthPoints);
+      // console.log("#health-" + fObj.name[1] + '  ' + fObj.healthPoints);
     }
     else {//DEFEATED ENEMY
       //TODO prompt for choose another fighter, also stats.
-      promptDefeat();
+      enemyDefeat();
       $('#warriors-stage').animate({
         opacity: "1",
       }, "slow");
@@ -102,18 +111,47 @@ $(document).ready(function () {
     }
 
 
+
   }
-  function promptDefeat() {
-    console.log("DEFEAT!!");
+  function enemyDefeat() {
+    // console.log("DEFEAT!!");
+    wins++;
     $("#game-info").addClass('d-block');
-    $("#game-card-body").text('You Defeat!');
-    $("#game-card-header").text('Defeat!');
-    
+    $("#game-card-body").text('You Defeated ' + enemyObj.name[0] + '!');
+    $("#game-card-header").text('You have Defeated Opponents '+wins+' Times!');
+
     $('#attack-div').removeClass('d-block');
     $('#attack-div').addClass('d-none');
+    //check for no more enemies
+
+    if ($('#warriors-stage').find('button').length == 0) {
+
+      $("#play-again").removeClass('d-none');
+      $("#play-again").addClass('d-block');
+    }
+
   }
 
-  //FUNCTION Calls
+  function selfDefeat() {
+    // console.log('I have been defeated');
+    losses++;
+    $("#game-info").removeClass('d-none');
+    $("#game-info").addClass('d-block');
+
+    $("#game-card-header").text('You have been defeated by '+enemyObj.name[0]+'!');
+    $("#game-card-body").text('You have lost ' +losses+ ' times! Please play again.');
+
+    $('#attack-div').removeClass('d-block');
+    $('#attack-div').addClass('d-none');
+    
+    $("#play-again").removeClass('d-none');
+    $("#play-again").addClass('d-block');
+  }
+
+  $('#play-again').on('click', function () {
+    resetGame();
+    console.log('play again');
+  });
 
   var charDiv;
   for (let i in fighters) {
@@ -127,6 +165,39 @@ $(document).ready(function () {
   finn.greeting();
   rey.greeting();
   skywalker.greeting();
+
+  function resetGame() {
+    kylo.reset();
+    maul.reset();
+    snoke.reset();
+    finn.reset();
+    rey.reset();
+    skywalker.reset();
+
+    resetDivs();
+    var charDiv;
+    for (let i in fighters) {
+      charDiv = $(fighters[i].characterDiv);
+      charDiv.appendTo("#fighter-stage");
+    }
+  }
+
+  function resetDivs() {
+
+    $('#fighters-text').text("Click on the character you wish use:");
+    $('#game-info').removeClass('d-block');
+    $('#game-info').addClass('d-none');
+    $('#dialog-box').removeClass('d-block');
+    $('#dialog-box').addClass('d-none');
+    $("#play-again").removeClass('d-block');
+    $("#play-again").addClass('d-none');    
+    
+    $('#warriors-stage').css({opacity: "1"});
+    $("#fighter-stage").empty();
+    $("#warriors-stage").empty();
+    $("#enemy-stage").empty();
+
+  }
 
   var fighterID;
   var enemyID;
@@ -178,6 +249,9 @@ $(document).ready(function () {
     console.log('button: ' + $(this).parent().children());
     playerBattle(fighterObj, enemyObj);
     // }
+    //Show the fight dialog box;
+    $('#dialog-box').removeClass('d-none');
+    $('#dialog-box').addClass('d-block');
   });
 
   $('body').on("click", '.enemy', function () {
@@ -193,38 +267,12 @@ $(document).ready(function () {
     //Show the Attack Button now.
     $('#attack-div').removeClass('d-none');
     $('#attack-div').addClass('d-block');
-    //Show the fight dialog box;
-    $('#dialog-box').removeClass('d-none');
-    $('#dialog-box').addClass('d-block');
-
 
     $('#warriors-stage').animate({
       opacity: "0.4",
     }, "slow");
 
   });//YOUR ENEMY HAS BEEN CHOSEN; CODE WILL BE USED AGAIN TO PICK ANOTHER FIGHTER.
-
-
-  // $("#clear").on("click", function() {
-  //   $('#display').empty();
-  // });
-
-
-  // if (checkRemaining()){
-  //   audioLose.play();
-  //   $('#myModalLose').modal({show: true, backdrop: 'static', keyboard: false});
-  //   dirty = false;  
-  // }
-
-
-
-
-
-  // });
-
-
-
-
 
 
 
