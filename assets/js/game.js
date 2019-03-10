@@ -82,10 +82,10 @@ $(document).ready(function () {
 
     fObj.attack(eObj);
     $("#fighter-header").text('You attacked ' + eObj.name[0] + ' for ' + fObj.attackPower + ' damage!');
-    $("#fighter-dialog").text('Your Health:');
+    // $("#fighter-dialog").text('Your Health:');
     //update enemy health on the DOM
     var eHP = ((eObj.healthPoints / eObj.maxHP)*100).toFixed(0);   
-    $("#enemy-health").css({width: +eHP+'%'});
+    $("#enemy-health").css({width: +eHP+'%'});    
     $("#health-" + eObj.name[1]).text(eObj.healthPoints);
     // console.log("#health-" + eObj.name[1] + '  ' + eObj.healthPoints);
 
@@ -93,7 +93,7 @@ $(document).ready(function () {
       
       fObj.counterAttacked(eObj);
       $("#enemy-header").text(eObj.name[0] + ' counter attacked you for ' + eObj.counterAttackPower + ' damage!');
-      $("#enemy-dialog").text('Enemy Health:');
+      // $("#enemy-dialog").text('Enemy Health:');
       
       //after counter attack, check if I have been defeated. 
       if (fObj.healthPoints <= 0) {
@@ -114,8 +114,14 @@ $(document).ready(function () {
       }, "slow");
 
       //Remove defeated!
-      $('#enemy-stage').empty();
+      $('#fighter-card-2').clone().prependTo('#enemies-defeated');
+      $('#fighter-card-2').empty();
       $('#warriors-stage').children().addClass('enemy');
+
+      $('#enemy-bar').removeClass('d-block');
+      $('#enemy-bar').addClass('d-none');
+      $('#dialog-box2').removeClass('d-block');
+      $('#dialog-box2').addClass('d-none');
     }
 
 
@@ -195,15 +201,25 @@ $(document).ready(function () {
     $('#fighters-text').text("Click on the character you wish use:");
     $('#game-info').removeClass('d-block');
     $('#game-info').addClass('d-none');
-    $('#dialog-box').removeClass('d-block');
-    $('#dialog-box').addClass('d-none');
+    $('#dialog-box1').removeClass('d-block');
+    $('#dialog-box1').addClass('d-none');
+    $('#dialog-box2').removeClass('d-block');
+    $('#dialog-box2').addClass('d-none');
     $("#play-again").removeClass('d-block');
     $("#play-again").addClass('d-none');    
     
-    $('#warriors-stage').css({opacity: "1"});
+    // $('#warriors-stage').addClass('float-left'); 
+    $("#warriors-stage").css({opacity: "1"});
     $("#fighter-stage").empty();
     $("#warriors-stage").empty();
-    $("#enemy-stage").empty();
+    $("#enemies-defeated").empty();
+    $("#fighter-card-1").empty();
+    $("#fighter-card-2").empty();
+    
+    $("#fighter-bar").removeClass('d-block');
+    $("#fighter-bar").addClass('d-none');
+    $("#enemy-bar").removeClass('d-block');
+    $("#enemy-bar").addClass('d-none');
 
   }
 
@@ -222,10 +238,14 @@ $(document).ready(function () {
 
     $(".evil").css("background-color", "red");
     $(".good").css("background-color", "green");
-
+    $(this).appendTo('#fighter-card-1');
+    $("#fighter-health").css({width: '100%'});   
+    //Show the health bar;
+    $('#fighter-bar').removeClass('d-none');
+    $('#fighter-bar').addClass('d-block');
+       
     //while fighter isn't chosen yet, go thru the array to choose move players around the DOM
-    //TODO Use the DOM and stop using for loops
-    for (let i in fighters) {
+        for (let i in fighters) {
       if ($(this).attr('id') != (fighters[i].name[1])) {
         var otherPlayer = '#' + fighters[i].name[1];
         if ($(this).attr('data-fighter-nature') == fighters[i].nature) {
@@ -250,15 +270,20 @@ $(document).ready(function () {
     }//for loop for all fighters...
 
     $('#fighters-text').text("You have chosen " + fighterObj.name[0] + " to fight your Battles!");
+   
+
   });//YOUR FIGHTER HAS BEEN CHOSEN; CODE WILL NOT BE USED AGAIN.
 
-  $('#btn-attack').on("click", function () {
-    //TODO add function to check for wins?´    
-    playerBattle(fighterObj, enemyObj);
-    // }
+  $('#attack-div').on("click", function () {
+     
     //Show the fight dialog box;
-    $('#dialog-box').removeClass('d-none');
-    $('#dialog-box').addClass('d-block');
+    $('#dialog-box1').removeClass('d-none');
+    $('#dialog-box1').addClass('d-block');
+    $('#dialog-box2').removeClass('d-none');
+    $('#dialog-box2').addClass('d-block');
+    
+    playerBattle(fighterObj, enemyObj);   
+
   });
 
   $('body').on("click", '.enemy', function () {
@@ -269,8 +294,12 @@ $(document).ready(function () {
     $(this).removeClass('enemy');
 
     $(this).siblings().removeClass('enemy');
-    $(this).appendTo('#enemy-stage');
-
+    
+    $(this).appendTo('#fighter-card-2');
+    //Show the progress bar;
+    $('#enemy-bar').removeClass('d-none');
+    $('#enemy-bar').addClass('d-block');
+    
     //Show the Attack Button now.
     $('#attack-div').removeClass('d-none');
     $('#attack-div').addClass('d-block');
@@ -278,12 +307,19 @@ $(document).ready(function () {
     //update enemy health to be 100% on the DOM for new picks    
     $("#enemy-health").css({width: '100%'});    
 
+    // $('#warriors-stage').addClass('float-right');  
     $('#warriors-stage').animate({
       opacity: "0.4",
     }, "slow");
 
   });//YOUR ENEMY HAS BEEN CHOSEN; CODE WILL BE USED AGAIN TO PICK ANOTHER FIGHTER.
 
+  $('#btn-reset').on("click", function () {
+    resetGame();
+  });
 
+  $('#btn-reset').on("click", function () {
+    //todo sound fx
+  });
 
 });//document ready

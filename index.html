@@ -1,129 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="assets/css/style.css">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="assets/css/style.css">
+
+
+  <title>Star Wars RPG</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container-fluid d-flex justify-content-between">
+          <div class="navbar-brand d-flex align-items-center">
+            <svg width="30" height="30" viewBox="0 0 22 22" fill="none" stroke="currentColor" class="mr-2">
+              <path fill="none"
+                d="M15.131,8.29c-0.944,0-1.711,0.766-1.711,1.71s0.767,1.711,1.711,1.711s1.71-0.767,1.71-1.711S16.075,8.29,15.131,8.29 M15.131,10.855c-0.472,0-0.855-0.383-0.855-0.855s0.384-0.855,0.855-0.855S15.986,9.528,15.986,10S15.603,10.855,15.131,10.855 M12.993,15.131c-0.236,0-0.428,0.191-0.428,0.427c0,0.237,0.191,0.429,0.428,0.429c0.235,0,0.427-0.191,0.427-0.429C13.42,15.322,13.229,15.131,12.993,15.131 M4.87,10.855c-0.473,0-0.855,0.383-0.855,0.856c0,0.471,0.383,0.854,0.855,0.854c0.472,0,0.854-0.384,0.854-0.854C5.724,11.238,5.341,10.855,4.87,10.855 M8.717,12.565c-0.708,0-1.283,0.574-1.283,1.283c0,0.708,0.574,1.282,1.283,1.282S10,14.557,10,13.849C10,13.14,9.426,12.565,8.717,12.565M8.717,14.275c-0.236,0-0.427-0.191-0.427-0.427c0-0.236,0.191-0.429,0.427-0.429s0.427,0.192,0.427,0.429C9.145,14.084,8.953,14.275,8.717,14.275 M11.283,10c-0.236,0-0.428,0.191-0.428,0.428c0,0.236,0.191,0.427,0.428,0.427c0.235,0,0.427-0.191,0.427-0.427C11.71,10.191,11.519,10,11.283,10 M10,0.594c-5.195,0-9.406,4.211-9.406,9.406c0,5.195,4.211,9.406,9.406,9.406c5.195,0,9.406-4.211,9.406-9.406C19.406,4.805,15.195,0.594,10,0.594 M10,18.552c-4.723,0-8.551-3.829-8.551-8.552c0-4.722,3.828-8.551,8.551-8.551S18.552,5.278,18.552,10C18.552,14.723,14.723,18.552,10,18.552M7.435,4.014c-1.417,0-2.565,1.149-2.565,2.565c0,1.417,1.148,2.565,2.565,2.565C8.851,9.145,10,7.997,10,6.58C10,5.164,8.851,4.014,7.435,4.014 M7.435,8.29c-0.944,0-1.71-0.766-1.71-1.71c0-0.945,0.766-1.71,1.71-1.71c0.945,0,1.71,0.765,1.71,1.71C9.145,7.524,8.379,8.29,7.435,8.29">
+              </path>
+            </svg>
+            <strong>Star Wars RPG</strong>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+      <div class="collapse navbar-collapse bg-dark" id="navbarMain">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active pl-5" href="index.html"><button type="button" class="btn btn-primary" id="btn-reset">Reset Game</button></a>
+          <a class="nav-item nav-link active pl-5" href="portfolio.html"><button type="button" class="btn btn-primary" id="btn-sfx" data-toggle="button-toggler">Toggle SFX</button></a>         
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="container mt-5">
+
     
+    <div class="row">
+      <div class="col-12">
+        <div class="wrapper">
+          <div class="instructions text-white">
+            <h4 id="fighters-text">Click on the character you wish use:</h4>
+          </div>
+          <div id="fighter-stage">
+            <!--js fills fighters-->
+          </div>
 
-    <title>Star Wars RPG</title>
-  </head>
-  <body>
-    <div class="container-fluid">
-  
-      <div class="row" style="height: 13rem;">
-        <div class="col-10">
-  
-          <div class="wrapper">
-            <div class="instructions text-white">
-              <h4 id="fighters-text">Click on the character you wish use:</h4>
-            </div>
-            <div id="fighter-stage">
-              <!--js fills fighters-->
-            </div>
-            <div class="text-white d-none" id="game-info">
-              <div class="card text-white bg-primary mb-0">
-                <div class="card-header" id="game-card-header"></div>
-                <div class="card-body">
-                  <p class="card-text" id="game-card-body"></p>
-                </div>
-              </div>
-            </div>
-          </div>
-  
         </div>
-        <div class="col-1"></div>
-  
+
       </div>
-  
-  
-      <div class="row" style="height: 13rem;">
-  
-        <div class="col-8">
-          <div class="wrapper">
-            <div class="instructions text-white" id="your-character">
-              <h4>Your Enemies</h4>
-            </div>
-            <div id="warriors-stage">
-              <!--js fills with your character-->
-            </div><div id="play-again" class="d-none"><button type="button" class="btn btn-primary" id="btn-play-again">Play Again!</button>
-            </div>  
-          </div>
-        </div>
-  
-        <div class="col-4"></div>
-      </div>
-  
-      <div class="row" style="height: 15rem;">
-  
-        <div class="col-4">
-          <div class="wrapper">
-            <div class="instructions text-white" id="your-fight">
-              <h4>Pick your opponents wisely...</h4>
-            </div>
-            <div id="enemy-stage">
-              <!--js fills with your enemy to fight-->
-            </div>
-  
-          </div>
-        </div>
-        <div class="col-2">
-  
-          <div class="wrapper">
-            <div id="attack-div" class="d-none">
-              <div class="instructions text-white" id="attack-enemies">
-                <h4>Attack!</h4>
-              </div>
-              <div id="attack-stage"><button type="button" class="btn btn-danger" id="btn-attack">Attack</button>
-              </div>
-            </div>
-          </div>
-  
-        </div>
-        <div class="col-6">
-          <div id="dialog-box" class="d-none">
-            <div class="card text-white bg-success mb-3">
-              <div class="card-header" id="fighter-header"></div>
-              <div class="card-body">
-                <p class="card-text" id="fighter-dialog"></p>
-                <div class="progress">
-                  <div id="fighter-health" class="progress-bar bg-warning" role="progressbar"></div>
-                </div>
-              </div>
-            </div>
-            <div class="card text-white bg-danger mb-3">
-              <div class="card-header" id="enemy-header"></div>
-              <div class="card-body">
-                <p class="card-text" id="enemy-dialog"></p>
-                <div class="progress">
-                  <div id="enemy-health" class="progress-bar bg-warning" role="progressbar"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-      </div>
-      <!--container-->
-  
-  
-      <!-- <footer class="footer text-center bg-dark pt-2 pb-2 mt-5 w-100 text-danger fixed-bottom"><span
-            title="Star Wars RPG">Star Wars RPG</span></footer> -->
+
+
+
     </div>
-  </body>
-  <!-- <script type="text/javascript" src="assets/js/game.js"></script> -->
-  <!-- <script type="text/javascript" src="./assets/js/game.js"></script> -->
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script type="text/javascript" src="./assets/js/game.js"></script>
-  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
-  <!-- <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script> -->
-  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-</html>
+    <!--row-->
+    <!-- style="border: 1px solid #d2d2d2;"-->
+    <div class="row justify-content-around">
+      <div class="col-5 text-center">
+        <div class="row">
+          <!--TODO put this after col-8-->
+          <div class="col-4" id="fighter-card-1" style="min-width:150px;"></div>
+          <div class="col-8" id="fighter-card-1x">
+            <div id="dialog-box1" class="d-none">
+              <div class="card text-white bg-success mb-3">
+                <div class="card-header" id="fighter-header"></div>                
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col d-none" id="fighter-bar">
+            <div class="progress">
+              <div id="fighter-health" class="progress-bar bg-warning" role="progressbar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-2 text-center">
+        <div class="row">
+          <div class="col">
+            <div id="attack-div" class="d-none"><button type="button" class="btn btn-danger" id="btn-attack">Attack</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div id="play-again" class="d-none"><button type="button" class="btn btn-primary" id="btn-play-again">Play Again!</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-5 text-center">
+        <div class="row">
+          <div class="col-4" id="fighter-card-2" style="min-width:150px;"></div>
+          <div class="col-8" id="fighter-card-2x">
+            <div id="dialog-box2" class="d-none">
+              <div class="card text-white bg-danger mb-3">
+                <div class="card-header" id="enemy-header"></div>                
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col d-none" id="enemy-bar">
+              <div class="progress">
+                  <div id="enemy-health" class="progress-bar bg-warning" role="progressbar"></div>
+                </div>                  
+          </div>          
+        </div>
+      </div>
+    </div>
 
+
+    <div class="row">
+
+      <div class="col-6 ">
+        <div class="wrapper">
+          <div class="instructions text-white" id="your-character">
+            <h4>Pick your enemy opponents wisely...</h4>
+          </div>
+          <div id="warriors-stage">
+            <!--js fills with your character-->
+          </div>
+          <!-- <div id="play-again" class="d-none"><button type="button" class="btn btn-primary" id="btn-play-again">Play
+              Again!</button> </div>-->
+        </div>
+      </div>
+
+      <div class="col-6" style="opacity: 0.2;"><h4>&nbsp;</h4><div id="enemies-defeated" style="display: inline-flex"></div></div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="text-white d-none" id="game-info">
+          <div class="card text-white bg-primary mb-0">
+            <div class="card-header" id="game-card-header"></div>
+            <div class="card-body">
+              <p class="card-text" id="game-card-body"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <!--container-->
+
+
+  <!-- <footer class="footer text-center bg-dark pt-2 pb-2 mt-5 w-100 text-danger fixed-bottom"><span
+            title="Star Wars RPG">Star Wars RPG</span></footer> -->
+  </div>
+</body>
+<!-- <script type="text/javascript" src="assets/js/game.js"></script> -->
+<!-- <script type="text/javascript" src="./assets/js/game.js"></script> -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="./assets/js/game.js"></script>
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+<!-- <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script> -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</html>
