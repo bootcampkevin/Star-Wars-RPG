@@ -4,7 +4,10 @@ $(document).ready(function () {
   //
   //
   //
-
+  var audioFighter = new Audio('./assets/sounds/fighter.mp3');
+  var audioEnemy = new Audio('./assets/sounds/enemy.mp3');
+  var audioHit;
+  var soundToggle = true;
   //Global Variables, then Objects, then Function Calls, yo.
   // $(document).ready(function() {
 
@@ -68,6 +71,7 @@ $(document).ready(function () {
   // let yoda = new Fighter(['Yoda','yoda'], 10, 20, 15, 'good');
   var wins = 0;
   var losses = 0;
+  var gamesWon = 0;
   // const fighters =[kylo, maul, palpatine, snoke, finn, rey, skywalker, yoda];
   const fighters = [kylo, maul, snoke, finn, rey, skywalker];
 
@@ -76,10 +80,15 @@ $(document).ready(function () {
     return fighters.find(rebel => rebel.name[1] === id);
   }
   //fights and updates the DOM
-  //TODO figure out how to keep track of wins/stats
   function playerBattle(fObj, eObj) {
-
-
+    
+    //Generate a random sound to hit from 6 available sounds. 
+    if(soundToggle==true){
+      var randomSoundNum = Math.floor(Math.random()*6);
+      audioHit = new Audio('./assets/sounds/'+randomSoundNum+'.mp3');    
+      audioHit.play();
+    }
+    //Attack logic
     fObj.attack(eObj);
     $("#fighter-header").text('You attacked ' + eObj.name[0] + ' for ' + fObj.attackPower + ' damage!');
     // $("#fighter-dialog").text('Your Health:');
@@ -131,8 +140,14 @@ $(document).ready(function () {
     // console.log("DEFEAT!!");
     wins++;
     $("#game-info").addClass('d-block');
-    $("#game-card-body").text('You Defeated ' + enemyObj.name[0] + '!');
-    $("#game-card-header").text('You have Defeated Opponents '+wins+' Times!');
+    if ($('#warriors-stage').find('button').length == 0) {
+      gamesWon++;
+      $("#game-card-body").text('You Defeated ' + enemyObj.name[0] + '!'+' Please Play Again!');
+    }
+    else{
+      $("#game-card-body").text('You Defeated ' + enemyObj.name[0] + '!'+' Please select another enemy to Battle.');
+      }
+    $("#game-card-header").text('You have Defeated Opponents '+wins+' Times and have Won '+gamesWon+' Battle Games!');
 
     $('#attack-div').removeClass('d-block');
     $('#attack-div').addClass('d-none');
@@ -173,12 +188,12 @@ $(document).ready(function () {
     charDiv.appendTo("#fighter-stage");
   }
 
-  kylo.greeting();
-  maul.greeting();
-  snoke.greeting();
-  finn.greeting();
-  rey.greeting();
-  skywalker.greeting();
+  // kylo.greeting();
+  // maul.greeting();
+  // snoke.greeting();
+  // finn.greeting();
+  // rey.greeting();
+  // skywalker.greeting();
 
   function resetGame() {
     kylo.reset();
@@ -208,13 +223,17 @@ $(document).ready(function () {
     $("#play-again").removeClass('d-block');
     $("#play-again").addClass('d-none');    
     
-    // $('#warriors-stage').addClass('float-left'); 
     $("#warriors-stage").css({opacity: "1"});
     $("#fighter-stage").empty();
     $("#warriors-stage").empty();
     $("#enemies-defeated").empty();
     $("#fighter-card-1").empty();
     $("#fighter-card-2").empty();
+
+    $("#attack-div").removeClass('d-block');
+    $("#attack-div").addClass('d-none');
+    $("#play-again").removeClass('d-block');
+    $("#play-again").addClass('d-none');
     
     $("#fighter-bar").removeClass('d-block');
     $("#fighter-bar").addClass('d-none');
@@ -239,10 +258,13 @@ $(document).ready(function () {
     $(".evil").css("background-color", "red");
     $(".good").css("background-color", "green");
     $(this).appendTo('#fighter-card-1');
+    if(soundToggle==true){audioFighter.play();}
     $("#fighter-health").css({width: '100%'});   
     //Show the health bar;
     $('#fighter-bar').removeClass('d-none');
     $('#fighter-bar').addClass('d-block');
+    $('#your-character-header').text('Pick your enemy opponents wisely...');
+    
        
     //while fighter isn't chosen yet, go thru the array to choose move players around the DOM
         for (let i in fighters) {
@@ -296,6 +318,7 @@ $(document).ready(function () {
     $(this).siblings().removeClass('enemy');
     
     $(this).appendTo('#fighter-card-2');
+    if(soundToggle==true){audioEnemy.play();} 
     //Show the progress bar;
     $('#enemy-bar').removeClass('d-none');
     $('#enemy-bar').addClass('d-block');
@@ -307,7 +330,7 @@ $(document).ready(function () {
     //update enemy health to be 100% on the DOM for new picks    
     $("#enemy-health").css({width: '100%'});    
 
-    // $('#warriors-stage').addClass('float-right');  
+    $('#your-character-header').text('\xa0');
     $('#warriors-stage').animate({
       opacity: "0.4",
     }, "slow");
@@ -315,11 +338,22 @@ $(document).ready(function () {
   });//YOUR ENEMY HAS BEEN CHOSEN; CODE WILL BE USED AGAIN TO PICK ANOTHER FIGHTER.
 
   $('#btn-reset').on("click", function () {
+    wins = 0;
+    losses = 0;
+    gamesWon = 0;
     resetGame();
-  });
 
-  $('#btn-reset').on("click", function () {
-    //todo sound fx
+  });
+  $('#btn-sfx').on("click", function () {
+    if (soundToggle == true) {
+
+      soundToggle = false;
+    }
+    else {
+
+      soundToggle = true;
+    }
+    console.log(soundToggle);
   });
 
 });//document ready
