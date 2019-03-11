@@ -1,25 +1,7 @@
-# Word-Guess-Game
+# Star-Wars-RPG
 
-Word-Guess-Game is a simple game built upon javascript as an introduction to the .js language.
+Star Wars RPG is a simple game built upon javascript as an introduction to jQuery.
 
-
-## Installation
-
-Load the index.html in [browser](./index.html) to run Word-Guess-Game.
-
-```bash
-open index.html
-or
-explorer index.html
-```
-
-## Usage
-
-```javascript
-
-
-
-```
 
 ## Contributing
 Pull requests are welcome. 
