@@ -4,6 +4,7 @@ $(document).ready(function () {
   //
   //
   //
+  var newBranchVariable = true;
   var audioFighter = new Audio('./assets/sounds/fighter.mp3');
   var audioEnemy = new Audio('./assets/sounds/enemy.mp3');
   var audioHit;
