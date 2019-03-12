@@ -67,7 +67,7 @@ $(document).ready(function () {
   let snoke = new Fighter(['Snoke', 'snoke'], 120, 20, 55, 'evil');
   let finn = new Fighter(['Finn', 'finn'], 130, 20, 15, 'good');
   let rey = new Fighter(['Rey', 'rey'], 140, 20, 15, 'good');
-  let skywalker = new Fighter(['Skywalker', 'skywalker'], 150, 20, 15, 'good');
+  let skywalker = new Fighter(['Skywalker', 'skywalker'], 150, 20, 45, 'good');
   // let yoda = new Fighter(['Yoda','yoda'], 10, 20, 15, 'good');
   var wins = 0;
   var losses = 0;
